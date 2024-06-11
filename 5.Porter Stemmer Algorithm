@@ -1,0 +1,10 @@
+import nltk
+from nltk.stem import PorterStemmer
+def porter_stemming(words):
+    stemmer = PorterStemmer()
+    stemmed_words = [stemmer.stem(word) for word in words]
+    return stemmed_words
+word_list = ["running", "easily", "jumps", "happily", "better"]
+stemmed_words = porter_stemming(word_list)
+print("Original Words:", word_list)
+print("Stemmed Words:", stemmed_words)
