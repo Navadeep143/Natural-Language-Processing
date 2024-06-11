@@ -1,0 +1,15 @@
+import nltk
+from nltk.tokenize import word_tokenize
+from nltk.stem import PorterStemmer, WordNetLemmatizer
+def morphological_analysis(text):
+    words = word_tokenize(text)
+    stemmer = PorterStemmer()
+    stemmed_words = [stemmer.stem(word) for word in words]
+    lemmatizer = WordNetLemmatizer()
+    lemmatized_words = [lemmatizer.lemmatize(word) for word in words]
+    print(f"Original Text: {text}")
+    print(f"Tokenized Words: {words}")
+    print(f"Stemmed Words: {stemmed_words}")
+    print(f"Lemmatized Words: {lemmatized_words}")
+text_to_analyze = "The quick brown foxes are jumping over the lazy dogs"
+morphological_analysis(text_to_analyze)
