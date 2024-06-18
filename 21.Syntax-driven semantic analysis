@@ -1,0 +1,20 @@
+import nltk
+from nltk import pos_tag, ne_chunk
+from nltk.tree import Tree
+def extract_noun_phrases(sentence):
+    words = nltk.word_tokenize(sentence)
+    pos_tags = pos_tag(words)
+    chunked_sentence = ne_chunk(pos_tags)
+    noun_phrases = []
+    for subtree in chunked_sentence:
+        if isinstance(subtree, Tree) and subtree.label() == 'NP':
+            noun_phrase = " ".join(word for word, _ in subtree.leaves())
+            meanings = " ".join(f"{word}/{tag}" for word, tag in subtree.leaves())
+            noun_phrases.append((noun_phrase, meanings))
+    return noun_phrases
+sentence = "The quick brown fox jumps over the lazy dog."
+noun_phrases = extract_noun_phrases(sentence)
+print("Original Sentence:", sentence)
+print("Extracted Noun Phrases and Meanings:")
+for noun_phrase, meanings in noun_phrases:
+    print(f"Noun Phrase: {noun_phrase} | Meanings: {meanings}")
